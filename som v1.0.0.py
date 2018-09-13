@@ -73,7 +73,10 @@ class neighbourhood_functions(object):
 #END of neighbourhood_functions       
             
 
-
+"""Used to create the Self Organizing Map itself, takes in the dimensions of the SOM, Neighbourhood function object of the
+   class defined previously, the learning rate and its various other updation and decay rules and the weight initialization
+   method"""
+   
 class Self_Organizing_Maps(object):
     
     def __init__(self, dimensions, NSfunction, distanceFunction = 'Eucledian', learningRate = 0.01, 
@@ -129,7 +132,7 @@ class Self_Organizing_Maps(object):
     def feature_normalize(self):
         self.dataset = (self.dataset - np.mean(self.dataset, axis = 1, keepdims = True))/np.var(self.dataset, axis = 1, keepdims = True)
     
-    
+    #To be called by the user with the dataset and number of epochs
     def run_SOM(self, dataset, epochs, normalize = True):
         self.initialize_weights(dataset.shape[1])
         self.create_SOM_structure()
@@ -182,6 +185,12 @@ class Self_Organizing_Maps(object):
     
     def update_weights(self):
         self.weights -= self.currentLearningRate * self.updateWeightsMatrix
-        
+    
+   #Getter methods
     def getWeights(self):
         return self.weights
+      
+    def get_node_assignment(self):
+      return self.nodeAssignmentMatrix
+   
+#END
