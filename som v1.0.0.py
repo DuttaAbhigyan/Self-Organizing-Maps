@@ -126,7 +126,8 @@ class Self_Organizing_Maps(object):
         if(self.initialization == 'random'):
             self.weights = np.random.normal(0, 1, size = (self.features, self.dimensions[0]*self.dimensions[1]))
         elif(self.initilization == 'from_data'):
-            self.weights = self.dataset[np.random.choice(self.features, self.dimensions[0]*self.dimensions[1], replace = False), :].T
+            self.weights = self.dataset[np.random.choice(self.features, self.dimensions[0]*self.dimensions[1], 
+                                                         replace = False), :].T
         
         
     def feature_normalize(self):
